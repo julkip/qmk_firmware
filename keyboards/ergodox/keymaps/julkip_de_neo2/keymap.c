@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
 [NEO] = KEYMAP(  // layer 0 : neo2
         // left hand
-        KC_ESC,  KC_1,  KC_2,  KC_3,  KC_4, KC_5, KC_PGUP,
+        KC_ESC,  NEO_1,  NEO_2,  NEO_3,  NEO_4, NEO_5, KC_PGUP,
         KC_TAB,  NEO_X,  NEO_V,  NEO_L,  NEO_C, NEO_W, KC_BSPC,
         NEO_L1_L,  NEO_U,  NEO_I,  NEO_A,  NEO_E, NEO_O,
         KC_LSFT, NEO_UE,  NEO_OE,  NEO_AE,  NEO_P, NEO_Z, KC_ENT,
@@ -51,11 +51,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                        KC_LALT,
                                      KC_SPC, NEO_L1_L, KC_LGUI,
         // right hand
-             KC_PGDN, KC_6, KC_7, KC_8,    KC_9,   KC_0,    NEO_MINS,
+             KC_PGDN, NEO_6, NEO_7, NEO_8,    NEO_9,   NEO_0,    NEO_MINS,
              KC_DEL,  NEO_K, NEO_H, NEO_G,    NEO_F,   NEO_Q,    NEO_SS,
                       NEO_S, NEO_N, NEO_R,    NEO_T,   NEO_D, NEO_Y,
              KC_ENT,  NEO_B, NEO_M, NEO_COMM, NEO_DOT, NEO_J, KC_RSFT,
-                           KC_F9, KC_F10,  KC_F11, KC_F12,  KC_RCTL,
+                           KC_LEFT, KC_DOWN,  KC_UP, KC_RIGHT,  KC_RCTL,
         KC_F7,   KC_F8,
         KC_FN1,
         KC_RGUI, NEO_L2_L, KC_SPC
@@ -140,13 +140,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                  KC_TRNS, KC_TRNS, KC_TRNS,
         // right hand
                KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO,
-               KC_NO, KC_NO, KC_7,  KC_8,  KC_9,  KC_RBRC, NEO_MINS,
-                      KC_NO, KC_4,  KC_5,  KC_6,  NEO_COMM, NEO_DOT,
-               KC_NO, KC_NO, KC_1,  KC_2,  KC_3,  KC_NO,   KC_NO,
+               KC_NO, KC_NO, NEO_7,  NEO_8,  NEO_9,  KC_RBRC, NEO_MINS,
+                      KC_NO, NEO_4,  NEO_5,  NEO_6,  NEO_COMM, NEO_DOT,
+               KC_NO, KC_NO, NEO_1,  NEO_2,  NEO_3,  KC_NO,   KC_NO,
                              KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO,
         KC_NO,    KC_NO,
         KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_0
+        KC_TRNS, KC_TRNS, NEO_0
 ),
 
 /* Keymap 3:
@@ -185,13 +185,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                  KC_TRNS, KC_TRNS, KC_TRNS,
         // right hand
                KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO,
-               KC_NO, KC_NO, KC_7,  KC_8,  KC_9,  KC_RBRC, NEO_MINS,
-                      KC_NO, KC_4,  KC_5,  KC_6,  NEO_COMM, NEO_DOT,
-               KC_NO, KC_NO, KC_1,  KC_2,  KC_3,  KC_NO,   KC_NO,
+               KC_NO, KC_NO, NEO_7,  NEO_8,  NEO_9,  KC_RBRC, NEO_MINS,
+                      KC_NO, NEO_4,  NEO_5,  NEO_6,  NEO_COMM, NEO_DOT,
+               KC_NO, KC_NO, NEO_1,  NEO_2,  NEO_3,  KC_NO,   KC_NO,
                              KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO,
         KC_NO,    KC_NO,
         KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_0
+        KC_TRNS, KC_TRNS, NEO_0
 ),
 
 /* Keymap 4:
@@ -220,7 +220,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [GAMINGQ] = KEYMAP(
 	// left hand
-          KC_ESC, KC_1,    KC_2,   KC_3,    KC_4,  KC_5,   KC_6,
+          KC_ESC, NEO_1,    NEO_2,   NEO_3,    NEO_4,  NEO_5,   NEO_6,
           KC_TAB,  NEO_P, NEO_Q, NEO_W,   NEO_E,  NEO_R, KC_BSPC,
           KC_NO,  NEO_I, NEO_A, NEO_S, NEO_D, NEO_F,
           KC_LSFT,  NEO_M,  NEO_Y,  NEO_X,  NEO_C,  NEO_V, KC_ENT,
