@@ -5,9 +5,7 @@
 #include "keymap_colemak.h"
 extern keymap_config_t keymap_config;
 
-// Fillers to make layering more clear
-#define _______ KC_TRNS
-#define XXXXXXX KC_NO
+#undef C
 #define C(n)    RCTL(n)
 #define CADKEY  RCTL(RALT(KC_DEL))
 
@@ -70,7 +68,7 @@ float unilin[][2]               = SONG(UNICODE_LINUX);
 #ifdef TAP_DANCE_ENABLE
 #define TAPPING_TERM 200
 
-void dance_raise_press(qk_tap_dance_state_t *state, void *user_data){// Called on each tap
+void dance_raise_press(tap_dance_state_t *state, void *user_data){// Called on each tap
   switch(state->count){      // Only turn the layer on once
     case 1:
         layer_off(_UNICODES);
@@ -79,7 +77,7 @@ void dance_raise_press(qk_tap_dance_state_t *state, void *user_data){// Called o
         break;
   }
 };
-void dance_raise_lift(qk_tap_dance_state_t *state, void *user_data){ // Called on release
+void dance_raise_lift(tap_dance_state_t *state, void *user_data){ // Called on release
   switch(state->count){
     case 1:         // Normal action. Turn off layers
         layer_off(_RAISE);
@@ -89,7 +87,7 @@ void dance_raise_lift(qk_tap_dance_state_t *state, void *user_data){ // Called o
   }
 };
 /////////////////////////////////////////////////////////////////////
-void dance_lower_press(qk_tap_dance_state_t *state, void *user_data){// Called on tap
+void dance_lower_press(tap_dance_state_t *state, void *user_data){// Called on tap
   switch(state->count){
     case 1:         // Turn on lower
         layer_off(_UNICODES);
@@ -98,7 +96,7 @@ void dance_lower_press(qk_tap_dance_state_t *state, void *user_data){// Called o
         break;
   }
 };
-void dance_lower_lift(qk_tap_dance_state_t *state, void *user_data){ // Called on release
+void dance_lower_lift(tap_dance_state_t *state, void *user_data){ // Called on release
   switch(state->count){
     case 1:         // Normal action. Turn off layers
         layer_off(_LOWER);
@@ -110,18 +108,18 @@ void dance_lower_lift(qk_tap_dance_state_t *state, void *user_data){ // Called o
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
         layer_on(_UNICODES);
         #ifdef AUDIO_ENABLE
-            PLAY_NOTE_ARRAY(tone_ctrl_mod, false, 0);
+            PLAY_SONG(tone_ctrl_mod);
         #endif
         break;
   }
 };
 /////////////////////////////////////////////////////////////////////
-void dance_super_press(qk_tap_dance_state_t *state, void *user_data){   // Called on down
+void dance_super_press(tap_dance_state_t *state, void *user_data){   // Called on down
     if(state->count == 1){
         register_code(KC_LGUI);
     }
 }
-void dance_super_done(qk_tap_dance_state_t *state, void *user_data){    // Called on timeout
+void dance_super_done(tap_dance_state_t *state, void *user_data){    // Called on timeout
   switch(state->count){
     case 2:
         register_code(KC_LGUI);
@@ -130,11 +128,11 @@ void dance_super_done(qk_tap_dance_state_t *state, void *user_data){    // Calle
         break;
   }
 }
-void dance_super_lift(qk_tap_dance_state_t *state, void *user_data){        // Called on up
+void dance_super_lift(tap_dance_state_t *state, void *user_data){        // Called on up
     unregister_code(KC_LGUI);
 }
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [RAI] = ACTION_TAP_DANCE_FN_ADVANCED(dance_raise_press, NULL, dance_raise_lift),
     [LOW] = ACTION_TAP_DANCE_FN_ADVANCED(dance_lower_press, NULL, dance_lower_lift),
     [SUP] = ACTION_TAP_DANCE_FN_ADVANCED(dance_super_press, dance_super_done, dance_super_lift)
@@ -176,7 +174,7 @@ enum Ext_Unicode{
     CHICK,
     TUMBLER
 };
-const uint32_t PROGMEM unicode_map[] = {
+const uint32_t unicode_map[] PROGMEM = {
     [PENGUIN]   = 0x1F427,
     [BOAR]      = 0x1F417,
     [MONKEY]    = 0x1F412,
@@ -202,7 +200,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if(record->event.pressed){
             persistent_default_layer_set(1UL<<_COLEMAK);
             #ifdef AUDIO_ENABLE
-              PLAY_NOTE_ARRAY(tone_colemak, false, 0);
+              PLAY_SONG(tone_colemak);
             #endif
         }
         return false;
@@ -211,7 +209,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if(record->event.pressed){
             persistent_default_layer_set(1UL<<_SWCOLE);
             #ifdef AUDIO_ENABLE
-              PLAY_NOTE_ARRAY(tone_swcole, false, 0);
+              PLAY_SONG(tone_swcole);
             #endif
         }
         return false;
@@ -236,26 +234,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
         break;
-    case SHFT_CAP: 
+    case SHFT_CAP:
         if(record->event.pressed){
             key_timer = timer_read();               // if the key is being pressed, we start the timer.
-            register_code(KC_LSHIFT);
+            register_code(KC_LSFT);
         } else {                                    // this means the key was just released (tap or "held down")
             if(timer_elapsed(key_timer) < 152){     // Time in ms, the threshold we pick for counting something as a tap.
                 tap(KC_CAPS);
                 if(caps_status == 0){
                     caps_status = 1;
                     #ifdef AUDIO_ENABLE
-                        PLAY_NOTE_ARRAY(tone_capslock_on, false, 0);
+                        PLAY_SONG(tone_capslock_on);
                     #endif
                 } else {
                     caps_status = 0;
                     #ifdef AUDIO_ENABLE
-                        PLAY_NOTE_ARRAY(tone_capslock_off, false, 0);
+                        PLAY_SONG(tone_capslock_off);
                     #endif
                 }
             }
-            unregister_code(KC_LSHIFT);
+            unregister_code(KC_LSFT);
         }
         return false;
         break;
@@ -267,10 +265,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (timer_elapsed(key_timer) < 152) {   // Time in ms, the threshold we pick for counting something as a tap.
                 tap(KC_B);
                 #ifdef AUDIO_ENABLE
-                    PLAY_NOTE_ARRAY(tone_ctrl_mod, false, 0);
+                    PLAY_SONG(tone_ctrl_mod);
                 #endif
                 #ifdef BACKLIGHT_BREATHING
-                    breathing_speed_set(2);
+                    breathing_period_set(2);
                     breathing_pulse();
                 #endif
             }
@@ -287,14 +285,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap(KC_C);
                 unregister_code(KC_LCTL);
                 #ifdef AUDIO_ENABLE
-                    PLAY_NOTE_ARRAY(tone_copy, false, 0);
+                    PLAY_SONG(tone_copy);
                 #endif
             } else {                                // Tap, paste
                 register_code(KC_LCTL);
                 tap(KC_V);
                 unregister_code(KC_LCTL);
                 #ifdef AUDIO_ENABLE
-                    PLAY_NOTE_ARRAY(tone_paste, false, 0);
+                    PLAY_SONG(tone_paste);
                 #endif
             }
         }
@@ -303,18 +301,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #ifdef UNICODE_ENABLE
     case UNIWIN:
         if(record->event.pressed){
-            set_unicode_input_mode(UC_WIN);
+            set_unicode_input_mode(UNICODE_MODE_WINDOWS);
             #ifdef AUDIO_ENABLE
-              PLAY_NOTE_ARRAY(uniwin, false, 0);
+              PLAY_SONG(uniwin);
             #endif
         }
         return false;
         break;
     case UNILIN:
         if(record->event.pressed){
-            set_unicode_input_mode(UC_LNX);
+            set_unicode_input_mode(UNICODE_MODE_LINUX);
             #ifdef AUDIO_ENABLE
-              PLAY_NOTE_ARRAY(unilin, false, 0);
+              PLAY_SONG(unilin);
             #endif
         }
         return false;
@@ -419,28 +417,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void matrix_init_user(void){        // Run once at startup
     #ifdef AUDIO_ENABLE
         _delay_ms(50); // gets rid of tick
-        PLAY_NOTE_ARRAY(tone_startup, false, 0);
+        PLAY_SONG(tone_startup);
     #endif
 }
 
 #ifdef AUDIO_ENABLE
 void play_goodbye_tone(void){
-  PLAY_NOTE_ARRAY(tone_goodbye, false, 0);
+  PLAY_SONG(tone_goodbye);
   _delay_ms(150);
 }
 
-void shutdown_user(){
-    PLAY_NOTE_ARRAY(tone_goodbye, false, 0);
+void shutdown_user(void){
+    PLAY_SONG(tone_goodbye);
     _delay_ms(150);
     stop_all_notes();
 }
 
 void music_on_user(void){           // Run when the music layer is turned on
-    PLAY_NOTE_ARRAY(tone_startup, false, 0);
+    PLAY_SONG(tone_startup);
 }
 
 void music_off_user(void){          // Run when music is turned off
-	PLAY_NOTE_ARRAY(tone_goodbye, false, 0);
+	PLAY_SONG(tone_goodbye);
 }
 #endif
 
