@@ -4,9 +4,11 @@
 #include "keymap_extras/keymap_neo2.h"
 
 enum layers {
-    BASE,  // default layer
-    SYMB,  // symbols
-    MDIA,  // media keys
+    NEO,      // neo layout
+    PMNEO,    // poor mans neo
+    NEOTHREE, // neo layer three
+    NEOFOUR,  // neo layer four
+    GAMINGQ   // Stupid commandpad stuff
 };
 
 enum custom_keycodes {
@@ -36,16 +38,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |ace   | End  |       | PgDn |        |      |
  *                                 `--------------------'       `----------------------'
  */
-[BASE] = LAYOUT_ergodox_pretty(
+[NEO] = LAYOUT_ergodox_pretty(
   // left hand
-  KC_ESC,          KC_1,        KC_2,          KC_3,    KC_4,    KC_5,    KC_PGUP,              KC_PGDN,      KC_6,    KC_7,    KC_8,    KC_9,              KC_0,           KC_MINS,
-  KC_TAB,          NE_X,        NE_V,          NE_L,    NE_C,    NE_W,    KC_BSPC,              KC_DEL,       NE_K,    NE_H,    NE_G,    NE_F,              NE_Q,           NE_SS,
-  NE_L3L,         KC_A,        KC_S,          KC_D,    KC_F,    KC_G,                                        KC_H,    KC_J,    KC_K,    KC_L,    LT(MDIA, KC_SCLN), GUI_T(KC_QUOT),
-  KC_LSFT,         CTL_T(KC_Z), KC_X,          KC_C,    KC_V,    KC_B,    ALL_T(KC_NO),                  MEH_T(KC_NO), KC_N,    KC_M,    KC_COMM, KC_DOT,           CTL_T(KC_SLSH), KC_RSFT,
-  LT(SYMB,KC_GRV), KC_QUOT,     LALT(KC_LSFT), KC_LEFT, KC_RGHT,                                              KC_UP,   KC_DOWN, KC_LBRC, KC_RBRC, TT(SYMB),
-                                                           ALT_T(KC_APP), KC_LGUI,                KC_LALT, CTL_T(KC_ESC),
-                                                                          KC_HOME,                 KC_PGUP,
-                                                         KC_SPC, KC_BSPC, KC_END,                  KC_PGDN, KC_TAB, KC_ENT
+  KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_PGUP,                KC_PGDN, KC_6, KC_7,   KC_8,    KC_9,   KC_0,     KC_MINS,
+  KC_TAB,  NE_X,    NE_V,    NE_L,    NE_C,    NE_W,    KC_BSPC,                KC_DEL,  NE_K, NE_H,   NE_G,    NE_F,   NE_Q,     NE_SS,
+  NE_L3L,  NE_U,    NE_I,    NE_A,    NE_E,    NE_O,                                    NE_S, NE_N,    NE_R,    NE_T,   NE_D,     NE_Y,
+  KC_LSFT, NE_UDIA, NE_ODIA, NE_ADIA, NE_P,    NE_Z,    KC_ENT,                 KC_ENT, NE_B, NE_M,    NE_COMM, NE_DOT, NE_J,     KC_RSFT,
+  KC_LCTL, KC_F1,   KC_F2,   KC_F3,   KC_F4,                                                  KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, KC_RCTL,
+                                                KC_F5,  KC_F6,       KC_F7,     KC_F8,
+                                                        KC_LALT,     TG(PMNEO),
+                                        KC_SPC, NE_L3R, KC_LGUI,     KC_RGUI,   NE_L4R, KC_SPC
 ),
 /* Keymap 1: Symbol Layer
  *
@@ -68,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
-[SYMB] = LAYOUT_ergodox_pretty(
+[PMNEO] = LAYOUT_ergodox_pretty(
   // left hand
   VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_TRNS,     KC_TRNS, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
   KC_TRNS, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, KC_TRNS,     KC_TRNS, KC_UP,   KC_7,    KC_8,    KC_9,    KC_ASTR, KC_F12,
@@ -100,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
-[MDIA] = LAYOUT_ergodox_pretty(
+[NEOTHREE] = LAYOUT_ergodox_pretty(
   // left hand
   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
