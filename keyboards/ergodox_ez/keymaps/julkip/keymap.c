@@ -2,6 +2,7 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "keymap_extras/keymap_neo2.h"
+#include "keymap_extras/keymap_german.h"
 
 enum layers {
     NEO,      // neo layout
@@ -20,66 +21,66 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   =    |   1  |   2  |   3  |   4  |   5  | LEFT |           | RIGHT|   6  |   7  |   8  |   9  |   0  |   -    |
+ * |  Esc   |   1  |   2  |   3  |   4  |   5  | PgUp |           | PgDn |   6  |   7  |   8  |   9  |   0  |   -    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Del    |   Q  |   W  |   E  |   R  |   T  |  L1  |           |  L1  |   Y  |   U  |   I  |   O  |   P  |   \    |
+ * |  Tab   |   X  |   V  |   L  |   C  |   W  | BKSP |           |  DEL |   K  |   H  |   G  |   F  |   Q  |   ß    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | BkSp   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |; / L2|' / Cmd |
- * |--------+------+------+------+------+------| Hyper|           | Meh  |------+------+------+------+------+--------|
- * | LShift |Z/Ctrl|   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |//Ctrl| RShift |
+ * |  M3l   |   U  |   I  |   A  |   E  |   O  |------|           |------|   S  |   N  |   R  |   T  |   D  |   Y    |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |  LSft  |   Ü  |   Ö  |   Ä  |   P  |   Z  | RET  |           | RET  |   B  |   M  |   ,  |   .  |   J  |  RSft  |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |Grv/L1|  '"  |AltShf| Left | Right|                                       |  Up  | Down |   [  |   ]  | ~L1  |
+ *   | LCtl |  F1  |  F2  |  F3  |  F4  |                                       |   ←  |   ↓  |   ↑  |  →   | RCtl |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        | App  | LGui |       | Alt  |Ctrl/Esc|
- *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      | Home |       | PgUp |        |      |
- *                                 | Space|Backsp|------|       |------|  Tab   |Enter |
- *                                 |      |ace   | End  |       | PgDn |        |      |
- *                                 `--------------------'       `----------------------'
+ *                                        |  F5  |  F6  |       |  F7  |  F8  |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      | LAlt |       |  L1  |      |      |
+ *                                 | Space|  M3l |------|       |------|  M4r | Space|
+ *                                 |      |      | LGui |       | RGui |      |      |
+ *                                 `--------------------'       `--------------------'
  */
 [NEO] = LAYOUT_ergodox_pretty(
   // left hand
   KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_PGUP,                KC_PGDN, KC_6, KC_7,   KC_8,    KC_9,   KC_0,     KC_MINS,
   KC_TAB,  NE_X,    NE_V,    NE_L,    NE_C,    NE_W,    KC_BSPC,                KC_DEL,  NE_K, NE_H,   NE_G,    NE_F,   NE_Q,     NE_SS,
-  NE_L3L,  NE_U,    NE_I,    NE_A,    NE_E,    NE_O,                                    NE_S, NE_N,    NE_R,    NE_T,   NE_D,     NE_Y,
-  KC_LSFT, NE_UDIA, NE_ODIA, NE_ADIA, NE_P,    NE_Z,    KC_ENT,                 KC_ENT, NE_B, NE_M,    NE_COMM, NE_DOT, NE_J,     KC_RSFT,
+  NE_L3L,  NE_U,    NE_I,    NE_A,    NE_E,    NE_O,                                     NE_S, NE_N,    NE_R,    NE_T,   NE_D,     NE_Y,
+  KC_LSFT, NE_UDIA, NE_ODIA, NE_ADIA, NE_P,    NE_Z,    KC_ENT,                 KC_ENT,  NE_B, NE_M,    NE_COMM, NE_DOT, NE_J,     KC_RSFT,
   KC_LCTL, KC_F1,   KC_F2,   KC_F3,   KC_F4,                                                  KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, KC_RCTL,
                                                 KC_F5,  KC_F6,       KC_F7,     KC_F8,
                                                         KC_LALT,     TG(PMNEO),
-                                        KC_SPC, NE_L3R, KC_LGUI,     KC_RGUI,   NE_L4R, KC_SPC
+                                        KC_SPC, NE_L3R, KC_LGUI,     KC_RGUI,   NE_L4R,  KC_SPC
 ),
 /* Keymap 1: Symbol Layer
  *
- * ,---------------------------------------------------.           ,--------------------------------------------------.
- * |Version  |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
- * |---------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
- * |         |   !  |   @  |   {  |   }  |   |  |      |           |      |   Up |   7  |   8  |   9  |   *  |   F12  |
- * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |         |   #  |   $  |   (  |   )  |   `  |------|           |------| Down |   4  |   5  |   6  |   +  |        |
- * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |         |   %  |   ^  |   [  |   ]  |   ~  |      |           |      |   &  |   1  |   2  |   3  |   \  |        |
- * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | EPRM  |      |      |      |      |                                       |      |    . |   0  |   =  |      |
- *   `-----------------------------------'                                       `----------------------------------'
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |  Esc   |   1  |   2  |   3  |   4  |   5  | PgUp |           | PgDn |   6  |   7  |   8  |   9  |   0  |   -    |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |  Tab   |   X  |   V  |   L  |   C  |   W  | BKSP |           |  DEL |   K  |   H  |   G  |   F  |   Q  |   ß    |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |  (L2)  |   U  |   I  |   A  |   E  |   O  |------|           |------|   S  |   N  |   R  |   T  |   D  |   Y    |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |  LSft  |   Ü  |   Ö  |   Ä  |   P  |   Z  | RET  |           | RET  |   B  |   M  |   ,  |   .  |   J  |  RSft  |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   | Prnt |  F1  |  F2  |  F3  |  F4  |                                       |   ←  |   ↓  |   ↑  |  →   | RCtl |
+ *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |Animat|      |       |Toggle|Solid |
+ *                                        |  F5  |  F6  |       |  F7  |  F8  |
  *                                 ,------|------|------|       |------+------+------.
- *                                 |Bright|Bright|      |       |      |Hue-  |Hue+  |
- *                                 |ness- |ness+ |------|       |------|      |      |
- *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      | LAlt |       |  L4  |      |      |
+ *                                 | Space| (L2) |------|       |------| (L3) | Space|
+ *                                 |      |      | LGui |       | RGui |      |      |
  *                                 `--------------------'       `--------------------'
  */
 [PMNEO] = LAYOUT_ergodox_pretty(
   // left hand
-  VRSN,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_TRNS,     KC_TRNS, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-  KC_TRNS, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, KC_TRNS,     KC_TRNS, KC_UP,   KC_7,    KC_8,    KC_9,    KC_ASTR, KC_F12,
-  KC_TRNS, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,               KC_DOWN, KC_4,    KC_5,    KC_6,    KC_PLUS, KC_TRNS,
-  KC_TRNS, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, KC_TRNS,     KC_TRNS, KC_AMPR, KC_1,    KC_2,    KC_3,    KC_BSLS, KC_TRNS,
-  EE_CLR,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                         KC_TRNS, KC_DOT,  KC_0,    KC_EQL,  KC_TRNS,
-                                               RGB_MOD, KC_TRNS,     RGB_TOG, RGB_M_P,
-                                                        KC_TRNS,     KC_TRNS,
-                                      RGB_VAD, RGB_VAI, KC_TRNS,     KC_TRNS, RGB_HUD, RGB_HUI
+  KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,
+  KC_TRNS, KC_X, KC_V,   KC_L, KC_C, KC_W, KC_TRNS,                          KC_TRNS, KC_K,   KC_H,    KC_G,    KC_F,    KC_Q, DE_SS,
+  KC_TRNS, KC_U, KC_I,  KC_A, KC_E, KC_O,                                             KC_S, KC_N,    KC_R,    KC_D,    KC_T, KC_Y,
+  KC_TRNS, DE_UDIA, DE_ADIA, DE_ODIA, KC_P, KC_Z, KC_TRNS,             KC_TRNS, KC_B, KC_M,    KC_COMM,    KC_DOT,    KC_J, KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                         KC_TRNS, KC_TRNS,  KC_TRNS,    KC_TRNS,  KC_TRNS,
+                                               KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS,
+                                                        KC_TRNS,     TG(GAMINGQ),
+                                      KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS
 ),
 /* Keymap 2: Media and mouse keys
  *
