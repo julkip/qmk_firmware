@@ -9,7 +9,6 @@ enum layers {
     PMNEO,    // poor mans neo
     NEOTHREE, // neo layer three
     NEOFOUR,  // neo layer four
-    GAMINGQ   // Stupid commandpad stuff
 };
 
 enum custom_keycodes {
@@ -18,7 +17,7 @@ enum custom_keycodes {
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/* Keymap 0: Basic layer
+/* Keymap 0: Neo Layout
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |  Esc   |   1  |   2  |   3  |   4  |   5  | PgUp |           | PgDn |   6  |   7  |   8  |   9  |   0  |   -    |
@@ -50,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         KC_LALT,     TG(PMNEO),
                                         KC_SPC, NE_L3R, KC_LGUI,     KC_RGUI,   NE_L4R,  KC_SPC
 ),
-/* Keymap 1: Symbol Layer
+/* Keymap 1: Poor Mans Neo
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |  Esc   |   1  |   2  |   3  |   4  |   5  | PgUp |           | PgDn |   6  |   7  |   8  |   9  |   0  |   -    |
@@ -75,11 +74,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // left hand
   KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,
   KC_TRNS, KC_X, KC_V,   KC_L, KC_C, KC_W, KC_TRNS,                          KC_TRNS, KC_K,   KC_H,    KC_G,    KC_F,    KC_Q, DE_SS,
-  KC_TRNS, KC_U, KC_I,  KC_A, KC_E, KC_O,                                             KC_S, KC_N,    KC_R,    KC_D,    KC_T, KC_Y,
+  KC_TRNS, KC_U, KC_I,  KC_A, KC_E, KC_O,                                             KC_S, KC_N,    KC_R,    KC_T,    KC_D, KC_Y,
   KC_TRNS, DE_UDIA, DE_ADIA, DE_ODIA, KC_P, KC_Z, KC_TRNS,             KC_TRNS, KC_B, KC_M,    KC_COMM,    KC_DOT,    KC_J, KC_TRNS,
   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                         KC_TRNS, KC_TRNS,  KC_TRNS,    KC_TRNS,  KC_TRNS,
                                                KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS,
-                                                        KC_TRNS,     TG(GAMINGQ),
+                                                        KC_TRNS,     KC_TRNS,
                                       KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS
 ),
 /* Keymap 2: Media and mouse keys
